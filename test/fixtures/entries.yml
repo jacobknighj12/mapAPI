@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  upload: 1
+  download: 1
+
+two:
+  upload: 1
+  download: 1
