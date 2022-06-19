@@ -1,16 +1,19 @@
-<h1>Pages#home</h1>
+<% if current_user %>
+  <h1><%= "Hello, #{current_user.email}" %></h1>
+<% end %>
 <p>Find me in app/views/pages/home.html.erb</p>
 <% if user_signed_in? %>
-    <p>Hello <%= current_user.email %></p>
-    <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
 <% else %>
-    <%= link_to 'Sign in', new_user_session_path %>
-<%= link_to 'Sign up', new_user_registration_path %> 
+  <%= link_to "Sign in", new_user_session_path %>
+  <%= link_to "Sign up", new_user_registration_path %>
 <% end %>
+<p>You can test the API with following credentials.</p>
 <div class="container">
-<ul>
-<li><%= link_to "Entries", entries_path %></li>
-<li>API V1 entries</li>
-<li>API V1 Andriod</li>
-</ul>
+  <%= @application.as_json %>
+  <ul>
+    <li><%= link_to "Web entries", entries_path %></li>
+    <li><%= link_to "API V1 entries", api_v1_entries_path %></li>
+    <%# <li><%= link_to "API V1 Android Books", api_v1_android_books_path %></li> %>
+  </ul>
 </div>
