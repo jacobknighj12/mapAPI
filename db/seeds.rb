@@ -5,12 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-if Doorkeeper::Application.count == 0
-    Doorkeeper::Application.create( name: 'Web API', uid: 'api', redirect_uri: '', scopes: '')
-    Doorkeeper::Application.create( name: 'IOS API', uid: 'api', redirect_uri: '', scopes: '')
-    Doorkeeper::Application.create( name: 'Andriod API', uid: 'api', redirect_uri: '', scopes: '')
-    Doorkeeper::Application.create( name: 'React API', uid: 'api', redirect_uri: '', scopes: '')
-end
-
+if Doorkeeper::Application.count.zero?
+    Doorkeeper::Application.create!(name: 'Web Client', redirect_uri: '', scopes: '')
+    Doorkeeper::Application.create!(name: 'iOS Client', redirect_uri: '', scopes: '')
+    Doorkeeper::Application.create!(name: 'Android Client', redirect_uri: '', scopes: '')
+    Doorkeeper::Application.create!(name: 'React', redirect_uri: '', scopes: '')
+  end
+  
 
 User.first_or_create(email: 'jacob@example.com', password: 'password', role: User.roles[:admin], password_confirmation: 'password') 
