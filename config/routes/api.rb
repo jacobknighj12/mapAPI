@@ -2,6 +2,7 @@ namespace :api do
     namespace :v1 do
       scope :users, module: :users do
         post '/', to: 'registrations#create', as: :user_registration
+        post '/login', to: 'registrations#login', as: :user_login
       end
       resources :entries
   
