@@ -1,5 +1,5 @@
 class Api::V1::EntriesController < ApplicationController
-    before_action :set_entry, only: %i[ show edit update destroy ]
+    before_action :set_entry, only: %i[ show create edit update destroy ]
     
     # GET /entries or /entries.json
     def index
