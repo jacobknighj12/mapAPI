@@ -1,6 +1,8 @@
-class Api::V1::EntriesController < ApplicationController
-    before_action :set_entry, only: %i[ show create edit update destroy ]
-    
+class Api::V1::EntriesController < ApiController
+    before_action :set_entry, only: %i[ show edit update destroy ]
+    skip_before_action :doorkeeper_authorize!, only: %i[create index show new edit update destroy]
+       
+    include DoorkeeperRegisterable
     # GET /entries or /entries.json
     def index
       @entries = Entry.all
@@ -24,17 +26,16 @@ class Api::V1::EntriesController < ApplicationController
     end
   
     # POST /entries or /entries.json
-    def create
-      @entry = Entry.new(entry_params)
-  
-      respond_to do |format|
+    def create      
+      @entry = Entry.new(entry_params)      
         if @entry.save
-          format.html { redirect_to entry_url(@entry), notice: "Entry was successfully created." }
-          format.json { render :show, status: :created, location: @entry }
+          render json: { status: :ok}
+          # format.html { redirect_to entry_url(@entry), notice: "Entry was successfully created." }
+          # format.json { render :show, status: :created, location: @entry }
         else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @entry.errors, status: :unprocessable_entity }
-        end
+          # format.html { render :new, status: :unprocessable_entity }
+          # format.json { render json: @entry.errors, status: :unprocessable_entity }
+          render json:  {status: :unprocessable_entity}        
       end
     end
   
@@ -69,7 +70,6 @@ class Api::V1::EntriesController < ApplicationController
   
       # Only allow a list of trusted parameters through.
       def entry_params
-        params.require(:entry).permit(:upload, :download)
+        params.permit(:upload, :download, :lat, :lng)
       end
   end
-  

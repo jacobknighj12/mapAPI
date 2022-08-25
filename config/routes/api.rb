@@ -1,11 +1,12 @@
 namespace :api do
-    namespace :v1 do
+    namespace :v1 do      
       scope :users, module: :users do
         post '/', to: 'registrations#create', as: :user_registration
         post '/login', to: 'registrations#login', as: :user_login
       end
       resources :entries
-  
+      post '/entries', to: 'entries#create'
+      
       namespace :android do
         resources :entries
       end

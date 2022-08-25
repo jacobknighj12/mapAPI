@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_19_124531) do
+ActiveRecord::Schema.define(version: 2022_08_25_134635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2022_06_19_124531) do
     t.integer "download"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "lat"
+    t.decimal "lng"
   end
 
   create_table "oauth_access_tokens", force: :cascade do |t|
