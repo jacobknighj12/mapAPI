@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @application = Doorkeeper::Application.find_by(name: "Web API")
+    @application = Doorkeeper::Application.find_by(name: "mapAPI")
     
     @application = {
       name: @application.name,
